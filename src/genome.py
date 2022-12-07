@@ -104,7 +104,6 @@ class ListGenome():
     def copy_te(self, te: int, offset: int):
         if te in self.TE_dict:
             element = self.TE_dict[te]
-            clone_start = (element[0] + offset) % len(self)
             clone_start = clone_start if clone_start > 0 else clone_start + 1
             clone_length = element[1]
             self.insert_te(clone_start, clone_length)
