@@ -104,7 +104,7 @@ class ListGenome():
     def copy_te(self, te: int, offset: int):
         if te in self.TE_dict:
             element = self.TE_dict[te]
-            clone_start = (element[0] + offset) % len(self.genome)
+            clone_start = (element[0] + offset) % len(self)
             clone_length = element[1]
             self.insert_te(clone_start, clone_length)
             return self.TE_ID
@@ -196,7 +196,7 @@ class LinkedListGenome():
     def copy_te(self, te: int, offset: int):
         if te in self.TE_dict:
             element = self.TE_dict[te]
-            clone_start = (element[0] + offset) % len(self.genome)
+            clone_start = (element[0] + offset) % len(self)
             clone_length = element[1]
             self.insert_te(clone_start, clone_length)
             return self.TE_ID
