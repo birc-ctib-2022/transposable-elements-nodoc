@@ -7,7 +7,6 @@ from abc import ABC, abstractmethod
 ################################################
 # Functions/Classes:
 
-
 class Genome(ABC):
     """Representation of a circular genome."""
 
@@ -76,7 +75,6 @@ class Genome(ABC):
         ...  
 
 
-
 class ListGenome():
 
     def __init__(self, n: int):
@@ -107,14 +105,14 @@ class ListGenome():
         if te in self.TE_dict:
             element = self.TE_dict[te]
             clone_start = (element[0] + offset) % len(self)
+            clone_start = clone_start if clone_start > 0 else clone_start + 1
             clone_length = element[1]
             self.insert_te(clone_start, clone_length)
             return self.TE_ID
-        else:
-            return None
+        else: return None
         
     def disable_te(self, te: int):
-        if te in self.TE_dict.keys():
+        if te in self.TE_dict:
             dis_te = self.TE_dict[te]
             for i in range(dis_te[0], dis_te[0]+dis_te[1]):
                 self.genome[i] = 'x'
@@ -129,8 +127,6 @@ class ListGenome():
     
     def __str__(self):
         return ''.join(self.genome)
-
-
 
 
 class LinkedListGenome():
@@ -205,8 +201,7 @@ class LinkedListGenome():
             clone_length = element[1]
             self.insert_te(clone_start, clone_length)
             return self.TE_ID
-        else:
-            return None
+        else: return None
         
     def disable_te(self, te: int):
         if te in self.TE_dict.keys():
