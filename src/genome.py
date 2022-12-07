@@ -16,7 +16,7 @@ class Genome(ABC):
         ...  # not implemented yet
         
     @abstractmethod
-    def insert_te(self, pos: int, length: int) -> int:
+    def insert_te(self, pos: int, length: int):
         """
         Insert a new transposable element.
         Insert a new transposable element at position pos and len
@@ -29,7 +29,7 @@ class Genome(ABC):
         ...  # not implemented yet
 
     @abstractmethod
-    def copy_te(self, te: int, offset: int) -> int | None:
+    def copy_te(self, te: int, offset: int):
         """
         Copy a transposable element.
         Copy the transposable element te to an offset from its current
@@ -43,7 +43,7 @@ class Genome(ABC):
         ...  # not implemented yet
 
     @abstractmethod
-    def disable_te(self, te: int) -> None:
+    def disable_te(self, te: int):
         """
         Disable a TE.
         If te is an active TE, then make it inactive. Inactive
@@ -53,17 +53,17 @@ class Genome(ABC):
         ...  # not implemented yet
 
     @abstractmethod
-    def active_tes(self) -> list[int]:
+    def active_tes(self):
         """Get the active TE IDs."""
         ...  # not implemented yet
 
     @abstractmethod
-    def __len__(self) -> int:
+    def __len__(self):
         """Get the current length of the genome."""
         ...  # not implemented yet
 
     @abstractmethod
-    def __str__(self) -> str:
+    def __str__(self):
         """
         Return a string representation of the genome.
         Create a string that represents the genome. By nature, it will be
@@ -234,3 +234,24 @@ class LinkedListGenome():
             string+=cur.val
             cur=cur.out
         return string
+
+#####################
+
+# g = ListGenome(2)
+# print(g.TE_dict)
+# print(g.genome)
+# g.insert_te(1,2)
+# print(g.TE_dict)
+# print(g.genome)
+# g.insert_te(2,1)
+# print(g.TE_dict)
+# print(g.genome)
+# g.copy_te(2,2)
+# print(g.TE_dict)
+# print(g.genome)
+# g.disable_te(2)
+# print(g.TE_dict)
+# print(g.genome)
+# print(g.active_tes())
+# print(g.__len__())
+# print(g.__str__())
