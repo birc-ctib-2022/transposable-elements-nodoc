@@ -13,7 +13,7 @@ class Genome(ABC):
 
     def __init__(self, n: int):
         """Create a genome of size n."""
-        ...  # not implemented yet
+        ...  
         
     @abstractmethod
     def insert_te(self, pos: int, length: int):
@@ -26,7 +26,7 @@ class Genome(ABC):
         removed from the set of active TEs.
         Returns a new ID for the transposable element.
         """
-        ...  # not implemented yet
+        ...  
 
     @abstractmethod
     def copy_te(self, te: int, offset: int):
@@ -40,7 +40,7 @@ class Genome(ABC):
         wrap around, since the genome is circular.
         If te is not active, return None (and do not copy it).
         """
-        ...  # not implemented yet
+        ...  
 
     @abstractmethod
     def disable_te(self, te: int):
@@ -50,17 +50,17 @@ class Genome(ABC):
         TEs are already inactive, so there is no need to do anything
         for those.
         """
-        ...  # not implemented yet
+        ...  
 
     @abstractmethod
     def active_tes(self):
         """Get the active TE IDs."""
-        ...  # not implemented yet
+        ...  
 
     @abstractmethod
     def __len__(self):
         """Get the current length of the genome."""
-        ...  # not implemented yet
+        ...  
 
     @abstractmethod
     def __str__(self):
@@ -73,7 +73,7 @@ class Genome(ABC):
         represented with the character '-', active TEs with 'A', and disabled
         TEs with 'x'.
         """
-        ...  # not implemented yet
+        ...  
 
 
 
@@ -102,12 +102,11 @@ class ListGenome():
         for key in r:
             self.TE_dict.pop(key)
         return self.TE_ID
-            
     
     def copy_te(self, te: int, offset: int):
         if te in self.TE_dict:
             element = self.TE_dict[te]
-            clone_start = (element[0] + offset) % len(self)  ############
+            clone_start = abs(element[0] + offset) # % len(self)  ############
             clone_length = element[1]
             self.insert_te(clone_start, clone_length)
             return self.TE_ID
@@ -125,10 +124,8 @@ class ListGenome():
     def active_tes(self):
         return list(self.TE_dict.keys())
     
-    
     def __len__(self):
         return len(self.genome)
-    
     
     def __str__(self):
         return ''.join(self.genome)
@@ -156,7 +153,6 @@ class LinkedListGenome():
         self.TE_dict = defaultdict()
         self.TE_ID = 0
         
-    
     def insert_te(self, pos: int, length: int):
         self.TE_ID += 1
         self.TE_dict[self.TE_ID] = (pos, length)
@@ -205,14 +201,13 @@ class LinkedListGenome():
     def copy_te(self, te: int, offset: int):
         if te in self.TE_dict:
             element = self.TE_dict[te]
-            clone_start = (element[0] + offset) % len(self)  ############
+            clone_start = abs(element[0] + offset) #% len(self)  ############
             clone_length = element[1]
             self.insert_te(clone_start, clone_length)
             return self.TE_ID
         else:
             return None
         
-    
     def disable_te(self, te: int):
         if te in self.TE_dict.keys():
             dis_te = self.TE_dict[te]
@@ -224,11 +219,9 @@ class LinkedListGenome():
                 cur = cur.out
         self.TE_dict.pop(te)
         return None
-
         
     def active_tes(self):
         return list(self.TE_dict.keys())
-    
     
     def __len__(self):
         cur = self.genome.out
@@ -238,7 +231,6 @@ class LinkedListGenome():
             cur=cur.out
         return count
     
-    
     def __str__(self):
         string = self.genome.val
         cur = self.genome.out
@@ -246,6 +238,4 @@ class LinkedListGenome():
             string+=cur.val
             cur=cur.out
         return string
-
-#####################
 
