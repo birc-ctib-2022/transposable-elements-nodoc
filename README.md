@@ -102,23 +102,38 @@ When you have implemented the two (or more) classes, describe the complexity of 
 
 # Awnser:
 
-ListGenome:
-init = O(n)
-insert = O(n * te)
-copy = O(n * te)
-disable = O(te)
-active te's = O(1)
-len = O(1)
-str = O(n)
+*ListGenome:*
 
-LinkedListGenome:
-init = O(n)
-insert = O(n * te)
-copy = O(n * te)
-disable = O(te)
-active te's = O(1)
-len = O(n)
-str = O(n)
+init = O(n), creating a list of length n.
+
+insert = O(te + n), creating a list of size te + inserting this list + (correcting).. probably something like te^2 * n i practise. 
+
+copy = O(n + te), uses insert so same as above.. 
+
+disable = O(te), removes from dict O(1) + corrects te characters. 
+
+active te's = O(1), dict.keys() is O(1) in python3.
+
+len = O(1), uses len() which is O(1).
+
+str = O(n), concatention using ''.join() is O(n)
+
+
+*LinkedListGenome:*
+
+init = O(n), creating n nodes using loop.
+
+insert = O(te + n^2), creating te size linked list + finding insert pos + looping through all nodes correcting their pos. 
+
+copy = O(n * te), same as above awnser. 
+
+disable = O(n + te), finding te + creating te. 
+
+active te's = O(1), dict.keys() is constant.
+
+len = O(n), looping through n counting. 
+
+str = O(n), looping through n while concatenating string.
 
 
 
