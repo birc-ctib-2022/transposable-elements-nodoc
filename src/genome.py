@@ -111,10 +111,12 @@ class ListGenome():
         
         
     def disable_te(self, te: int):
-        dis_te = self.TE_dict[te]
-        for i in range(dis_te[0], dis_te[0]+dis_te[1]):
-            self.genome[i] = 'x'
+        if te in self.self.TE_dict.keys():
+            dis_te = self.TE_dict[te]
+            for i in range(dis_te[0], dis_te[0]+dis_te[1]):
+                self.genome[i] = 'x'
         self.TE_dict.pop(te)
+        return None
         
     
     def active_tes(self):
@@ -213,6 +215,7 @@ class LinkedListGenome():
                 cur.val = 'x'
                 cur = cur.out
         self.TE_dict.pop(te)
+        return None
         
         
     def active_tes(self):
