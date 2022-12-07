@@ -104,15 +104,15 @@ class ListGenome():
             
     
     def copy_te(self, te: int, offset: int):
-        if te in self.TE_dict.keys():
+        if te in self.TE_dict:
+            position = (self.TE_dict[te][0] + offset) % len(self) ###########################
             element = self.TE_dict[te]
-            clone_start = element[0] + offset
+            #clone_start = element[0] + offset
             clone_length = element[1]
-            self.insert_te(clone_start, clone_length)
+            self.insert_te(position, clone_length)
             return self.TE_ID
         else:
             return None
-        
         
     def disable_te(self, te: int):
         if te in self.TE_dict.keys():
@@ -121,7 +121,6 @@ class ListGenome():
                 self.genome[i] = 'x'
         self.TE_dict.pop(te)
         return None
-        
     
     def active_tes(self):
         return list(self.TE_dict.keys())

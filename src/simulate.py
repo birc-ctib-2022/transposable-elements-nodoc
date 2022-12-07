@@ -73,6 +73,8 @@ def sim_te(n: int, k: int,
 
         if Ops.sample(op_weights) == Ops.DISABLE:
             te = rand.choice(active)
+            print(te)
+            print(genome)
             genome.disable_te(te)
 
     return str(genome)
