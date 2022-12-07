@@ -100,6 +100,52 @@ You are free to implement the genome classes however you want, and using whateer
 
 When you have implemented the two (or more) classes, describe the complexity of each operation as a function of the genome size (at the time of the operation), and the size of the TE involved (and when copying, the offset you are copying). Put the description here:
 
-**FIXME: OPERATION COMPLEXITY**
+# Awnser:
 
-In `src/simulate.py` you will find a program that can run simulations and tell you actual time it takes to simulate with different implementations. You can use it to test your analysis. You can modify the parameters to the simulator if you want to explore how they affect the running time.
+*ListGenome:*
+
+init = O(n), creating a list of length n.
+
+insert = O(te + n), creating a list of size te + inserting this list + (correcting).. probably something like te^2 * n i practise. 
+
+copy = O(n + te), uses insert so same as above.. 
+
+disable = O(te), removes from dict O(1) + corrects te characters. 
+
+active te's = O(1), dict.keys() is O(1) in python3.
+
+len = O(1), uses len() which is O(1).
+
+str = O(n), concatention using ''.join() is O(n)
+
+
+*LinkedListGenome:*
+
+init = O(n), creating n nodes using loop.
+
+insert = O(te + n^2), creating te size linked list + finding insert pos + looping through all nodes correcting their pos. 
+
+copy = O(n * te), same as above awnser. 
+
+disable = O(n + te), finding te + creating te. 
+
+active te's = O(1), dict.keys() is constant.
+
+len = O(n), looping through n counting. 
+
+str = O(n), looping through n while concatenating string.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
