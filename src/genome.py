@@ -113,7 +113,7 @@ class ListGenome():
     def disable_te(self, te: int):
         dis_te = self.TE_dict[te]
         for i in range(dis_te[0], dis_te[0]+dis_te[1]):
-            self.genome[i] = 'I'
+            self.genome[i] = 'x'
         self.TE_dict.pop(te)
         
     
