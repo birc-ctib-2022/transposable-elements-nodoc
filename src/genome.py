@@ -104,10 +104,14 @@ class ListGenome():
             
     
     def copy_te(self, te: int, offset: int):
-        element = self.TE_dict[te]
-        clone_start = element[0] + offset
-        clone_length = element[1]
-        self.insert_te(clone_start, clone_length)
+        if te in self.TE_dict.keys():
+            element = self.TE_dict[te]
+            clone_start = element[0] + offset
+            clone_length = element[1]
+            self.insert_te(clone_start, clone_length)
+            return self.TE_ID
+        else:
+            return None
         
         
     def disable_te(self, te: int):
