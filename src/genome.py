@@ -94,7 +94,7 @@ class ListGenome():
             if start < pos <= end:
                 r.append(key)
                 for i in range(start, end):
-                    self.genome[i] = 'I'
+                    self.genome[i] = 'x'
             if pos < start:
                 self.TE_dict[key] = (start + length, self.TE_dict[key][1])
         self.genome[pos:pos] = ['A'] * length
@@ -164,7 +164,7 @@ class LinkedListGenome():
                 while cur.pos != start:
                     cur=cur.out
                 for i in range(start, end):
-                    cur.val = 'I'
+                    cur.val = 'x'
                     cur = cur.out
             if pos < start:
                 self.TE_dict[key] = (start + length, self.TE_dict[key][1])
@@ -209,7 +209,7 @@ class LinkedListGenome():
         while cur.pos != dis_te[0]:
             cur = cur.out
         for i in range(dis_te[0], dis_te[0]+dis_te[1]):
-            cur.val = 'I'
+            cur.val = 'x'
             cur = cur.out
         self.TE_dict.pop(te)
         
